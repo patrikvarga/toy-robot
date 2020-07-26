@@ -12,6 +12,7 @@
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "outDir": "./dist",
     "baseUrl": "./src/",
     "allowJs": false,
