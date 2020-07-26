@@ -4,7 +4,7 @@ export enum Direction {
   NORTH, EAST, SOUTH, WEST
 }
 
-export type Position = {
+type Position = {
   x: Int,
   y: Int,
   direction?: Direction
@@ -42,8 +42,8 @@ export default class Robot {
    * @param direction the robot will face this direction
    * @returns true if successful, false otherwise
    */
-  public place = (table: Table, x: number, y: number, direction: Direction): boolean => {
-    if (table.isValidPosition(x, y)) {
+  public place = (table: Table, x: number, y: number, direction?: Direction): boolean => {
+    if (table.isValidPosition(x, y) && direction !== undefined) {
       this.x = int(x)
       this.y = int(y)
       this.direction = direction
@@ -67,6 +67,17 @@ export default class Robot {
   public report = (): Position => ({
     x: this.x,
     y: this.y,
+    direction: this.direction
+  })
+
+  public move = (table: Table): boolean => {
+    const newPosition = this.calculateNextPosition()
+    return this.place(table, newPosition.x, newPosition.y, newPosition.direction)
+  }
+
+  private calculateNextPosition = (): Position => ({
+    x: int(this.direction === Direction.EAST ? this.x + 1 : this.direction === Direction.WEST ? this.x - 1 : this.x),
+    y: int(this.direction === Direction.NORTH ? this.y + 1 : this.direction === Direction.SOUTH ? this.y - 1 : this.x),
     direction: this.direction
   })
 

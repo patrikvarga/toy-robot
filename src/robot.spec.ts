@@ -40,6 +40,10 @@ describe("robot", () => {
       expect(robot.place(table, 666, 999, Direction.EAST)).to.eq(false)
     })
 
+    it("is ignored on unspecified direction", () => {
+      expect(robot.place(table, 666, 999, undefined)).to.eq(false)
+    })
+
     it("is accepted on valid table coordinates", () => {
       expect(robot.place(table, 666, 999, Direction.EAST)).to.eq(true)
     })
@@ -138,6 +142,59 @@ describe("robot", () => {
 
       expect(robot.report().direction).to.eq(Direction.WEST)
     })
+
+    it("returns initial values before placement", () => {
+      expect(robot.report().x).to.eq(-1)
+      expect(robot.report().y).to.eq(-1)
+      expect(robot.report().direction).to.eq(undefined)
+    })
   })
 
+  describe("move", () => {
+    it("NORTH succesfully", () => {
+      robot.place(table, 4, 3, Direction.NORTH)
+      robot.move(table)
+
+      expect(robot.y).to.eq(4)
+    })
+
+    it("EAST succesfully", () => {
+      robot.place(table, 4, 3, Direction.EAST)
+
+      expect(robot.move(table)).to.eq(true)
+      expect(robot.x).to.eq(5)
+    })
+
+    it("SOUTH succesfully", () => {
+      robot.place(table, 4, 3, Direction.SOUTH)
+
+      expect(robot.move(table)).to.eq(true)
+      expect(robot.y).to.eq(2)
+    })
+
+    it("WEST succesfully", () => {
+      robot.place(table, 4, 3, Direction.WEST)
+
+      expect(robot.move(table)).to.eq(true)
+      expect(robot.x).to.eq(3)
+    })
+
+    it("is ignored before placement", () => {
+      expect(robot.move(table)).to.eq(false)
+      expect(robot.x).to.eq(-1)
+      expect(robot.y).to.eq(-1)
+      expect(robot.report().direction).to.eq(undefined)
+    })
+
+    it("is ignored on invalid position", () => {
+      robot.place(table, 4, 3, Direction.WEST)
+      sinon.restore()
+      sinon.stub(table, "isValidPosition").returns(false)
+
+      expect(robot.move(table)).to.eq(false)
+      expect(robot.x).to.eq(4)
+      expect(robot.y).to.eq(3)
+      expect(robot.report().direction).to.eq(Direction.WEST)
+    })
+  })
 })
