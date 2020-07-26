@@ -65,4 +65,73 @@ describe("robot", () => {
       expect(robot.direction).to.eq(Direction.EAST);
     });
   });
+
+  describe("turning left", () => {
+    beforeEach(() => {
+      sinon.stub(table, "isValidPosition").returns(true);
+    });
+
+    it("from NORTH is now facing WEST", () => {
+      robot.place(table, 666, 999, Direction.NORTH)
+
+      expect(robot.turnLeft()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.WEST);
+    });
+
+    it("from EAST is now facing NORTH", () => {
+      robot.place(table, 666, 999, Direction.EAST)
+
+      expect(robot.turnLeft()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.NORTH);
+    });
+
+    it("from SOUTH is facing EAST", () => {
+      robot.place(table, 666, 999, Direction.SOUTH)
+
+      expect(robot.turnLeft()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.EAST);
+    });
+
+    it("from WEST is facing SOUTH", () => {
+      robot.place(table, 666, 999, Direction.WEST)
+
+      expect(robot.turnLeft()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.SOUTH);
+    });
+  });
+
+  describe("turning right", () => {
+    beforeEach(() => {
+      sinon.stub(table, "isValidPosition").returns(true);
+    });
+
+    it("from NORTH is now facing EAST", () => {
+      robot.place(table, 666, 999, Direction.NORTH)
+
+      expect(robot.turnRight()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.EAST);
+    });
+
+    it("from EAST is now facing SOUTH", () => {
+      robot.place(table, 666, 999, Direction.EAST)
+
+      expect(robot.turnRight()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.SOUTH);
+    });
+
+    it("from SOUTH is facing WEST", () => {
+      robot.place(table, 666, 999, Direction.SOUTH)
+
+      expect(robot.turnRight()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.WEST);
+    });
+
+    it("from WEST is facing NORTH", () => {
+      robot.place(table, 666, 999, Direction.WEST)
+
+      expect(robot.turnRight()).to.eq(true);
+      expect(robot.direction).to.eq(Direction.NORTH);
+    });
+  });
+
 });

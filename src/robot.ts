@@ -4,6 +4,14 @@ export enum Direction {
   NORTH, EAST, SOUTH, WEST
 }
 
+const clockwiseDirections: Array<Direction> = [
+  Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST
+];
+
+const counterClokwiseDirections: Array<Direction> = [
+  Direction.NORTH, Direction.WEST, Direction.SOUTH, Direction.EAST
+];
+
 /**
  * A robot that can move on a table.
  */
@@ -36,6 +44,22 @@ export default class Robot {
       return true;
     }
     return false;
+  }
+
+  private turn = (directions: Array<Direction>): boolean => {
+    if (this.direction !== undefined) {
+      this.direction = directions[(directions.indexOf(this.direction) + 1) % 4];
+      return true;
+    }
+    return false;
+  }
+
+  public turnLeft = (): boolean => {
+    return this.turn(counterClokwiseDirections);
+  }
+
+  public turnRight = (): boolean => {
+    return this.turn(clockwiseDirections);
   }
 
 }
