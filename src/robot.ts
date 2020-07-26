@@ -54,12 +54,8 @@ export default class Robot {
     return false;
   }
 
-  public turnLeft = (): boolean => {
-    return this.turn(counterClokwiseDirections);
-  }
+  public turnLeft = (): boolean => this.turn(counterClokwiseDirections);
 
-  public turnRight = (): boolean => {
-    return this.turn(clockwiseDirections);
-  }
+  public turnRight = (): boolean => this.turn(clockwiseDirections);
 
 }

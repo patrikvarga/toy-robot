@@ -22,8 +22,8 @@ export default class Table {
   /**
    * Checks if a given position is on the table.
    */
-  public isValidPosition = (x: number, y: number): boolean => {
-    return 0 <= int(x) && int(x) < this.width && 0 <= int(y) && int(y) < this.height;
-  }
+  public isValidPosition = (x: number, y: number): boolean =>
+    0 <= int(x) && int(x) < this.width &&
+    0 <= int(y) && int(y) < this.height;
 
 }
