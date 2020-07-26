@@ -1,0 +1,23 @@
+{
+  "name": "toy-robot",
+  "version": "1.0.0",
+  "description": "Toy Robot Simulator",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src",
+    "start:watch": "ts-node-dev --respawn src",
+    "test": "mocha src/**/*.spec.ts --require ts-node/register",
+    "test:watch": "npm run test -- --watch --watch-files src"
+  },
+  "author": "Patrik Varga",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/mocha": "^8.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "ts-node-dev": "^1.0.0-pre.56",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.7"
+  }
+}
