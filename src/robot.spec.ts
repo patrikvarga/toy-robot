@@ -9,8 +9,9 @@ describe("robot", () => {
   let robot: Robot;
 
   beforeEach(() => {
-    table = new Table(1, 1);
     robot = new Robot();
+    table = new Table(1, 1);
+    sinon.stub(table, "isValidPosition").returns(true);
   });
 
   afterEach(() => {
@@ -33,44 +34,33 @@ describe("robot", () => {
 
   describe("placement", () => {
     it("is ignored on invalid table coordinates", () => {
+      sinon.restore();
       sinon.stub(table, "isValidPosition").returns(false);
 
       expect(robot.place(table, 666, 999, Direction.EAST)).to.eq(false);
     });
 
     it("is accepted on valid table coordinates", () => {
-      sinon.stub(table, "isValidPosition").returns(true);
-
       expect(robot.place(table, 666, 999, Direction.EAST)).to.eq(true);
     });
 
     it("sets robot's X coordinate when accepted", () => {
-      sinon.stub(table, "isValidPosition").returns(true);
-
       robot.place(table, 666, 999, Direction.EAST)
       expect(robot.x).to.eq(666);
     });
 
     it("sets robot's Y coordinate when accepted", () => {
-      sinon.stub(table, "isValidPosition").returns(true);
-
       robot.place(table, 666, 999, Direction.EAST)
       expect(robot.y).to.eq(999);
     });
 
     it("sets robot's direction when accepted", () => {
-      sinon.stub(table, "isValidPosition").returns(true);
-
       robot.place(table, 666, 999, Direction.EAST)
       expect(robot.direction).to.eq(Direction.EAST);
     });
   });
 
   describe("turning left", () => {
-    beforeEach(() => {
-      sinon.stub(table, "isValidPosition").returns(true);
-    });
-
     it("from NORTH is now facing WEST", () => {
       robot.place(table, 666, 999, Direction.NORTH)
 
@@ -101,10 +91,6 @@ describe("robot", () => {
   });
 
   describe("turning right", () => {
-    beforeEach(() => {
-      sinon.stub(table, "isValidPosition").returns(true);
-    });
-
     it("from NORTH is now facing EAST", () => {
       robot.place(table, 666, 999, Direction.NORTH)
 
@@ -131,6 +117,26 @@ describe("robot", () => {
 
       expect(robot.turnRight()).to.eq(true);
       expect(robot.direction).to.eq(Direction.NORTH);
+    });
+  });
+
+  describe("report", () => {
+    it("returns X coordinate", () => {
+      robot.place(table, 666, 999, Direction.WEST);
+
+      expect(robot.report().x).to.eq(666);
+    });
+
+    it("returns Y coordinate", () => {
+      robot.place(table, 666, 999, Direction.WEST);
+
+      expect(robot.report().y).to.eq(999);
+    });
+
+    it("returns direction", () => {
+      robot.place(table, 666, 999, Direction.WEST);
+
+      expect(robot.report().direction).to.eq(Direction.WEST);
     });
   });
 

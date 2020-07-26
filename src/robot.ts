@@ -4,11 +4,17 @@ export enum Direction {
   NORTH, EAST, SOUTH, WEST
 }
 
-const clockwiseDirections: Array<Direction> = [
+export type Position = {
+  x: Int,
+  y: Int,
+  direction?: Direction
+}
+
+const clockwiseDirections: Direction[] = [
   Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST
 ];
 
-const counterClokwiseDirections: Array<Direction> = [
+const counterClockwiseDirections: Direction[] = [
   Direction.NORTH, Direction.WEST, Direction.SOUTH, Direction.EAST
 ];
 
@@ -29,7 +35,7 @@ export default class Robot {
 
   /**
    * Place a robot into the specified coordinates on a table, facing specified direction.
-   * 
+   *
    * @param table the target table
    * @param x x coordinate
    * @param y y coordinate
@@ -46,7 +52,7 @@ export default class Robot {
     return false;
   }
 
-  private turn = (directions: Array<Direction>): boolean => {
+  private turn = (directions: Direction[]): boolean => {
     if (this.direction !== undefined) {
       this.direction = directions[(directions.indexOf(this.direction) + 1) % 4];
       return true;
@@ -54,8 +60,14 @@ export default class Robot {
     return false;
   }
 
-  public turnLeft = (): boolean => this.turn(counterClokwiseDirections);
+  public turnLeft = (): boolean => this.turn(counterClockwiseDirections);
 
   public turnRight = (): boolean => this.turn(clockwiseDirections);
+
+  public report = (): Position => ({
+    x: this.x,
+    y: this.y,
+    direction: this.direction
+  });
 
 }

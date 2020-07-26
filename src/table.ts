@@ -3,7 +3,7 @@ export const int = (num: number): Int => Math.round(num) as Int;
 
 /**
  * A table that a robot can move on.
- * 
+ *
  * Coordinates are zero-based and rounded to nearest int in every method.
  */
 export default class Table {
