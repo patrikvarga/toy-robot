@@ -1,4 +1,4 @@
-import Table, { Int, int } from "./table";
+import Table, { Int, int } from "./table"
 
 export enum Direction {
   NORTH, EAST, SOUTH, WEST
@@ -12,25 +12,25 @@ export type Position = {
 
 const clockwiseDirections: Direction[] = [
   Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST
-];
+]
 
 const counterClockwiseDirections: Direction[] = [
   Direction.NORTH, Direction.WEST, Direction.SOUTH, Direction.EAST
-];
+]
 
 /**
  * A robot that can move on a table.
  */
 export default class Robot {
 
-  public x: Int;
-  public y: Int;
-  public direction?: Direction;
+  public x: Int
+  public y: Int
+  public direction?: Direction
 
   constructor() {
-    this.x = int(-1);
-    this.y = int(-1);
-    this.direction = undefined;
+    this.x = int(-1)
+    this.y = int(-1)
+    this.direction = undefined
   }
 
   /**
@@ -44,30 +44,30 @@ export default class Robot {
    */
   public place = (table: Table, x: number, y: number, direction: Direction): boolean => {
     if (table.isValidPosition(x, y)) {
-      this.x = int(x);
-      this.y = int(y);
-      this.direction = direction;
-      return true;
+      this.x = int(x)
+      this.y = int(y)
+      this.direction = direction
+      return true
     }
-    return false;
+    return false
   }
 
   private turn = (directions: Direction[]): boolean => {
     if (this.direction !== undefined) {
-      this.direction = directions[(directions.indexOf(this.direction) + 1) % 4];
-      return true;
+      this.direction = directions[(directions.indexOf(this.direction) + 1) % 4]
+      return true
     }
-    return false;
+    return false
   }
 
-  public turnLeft = (): boolean => this.turn(counterClockwiseDirections);
+  public turnLeft = (): boolean => this.turn(counterClockwiseDirections)
 
-  public turnRight = (): boolean => this.turn(clockwiseDirections);
+  public turnRight = (): boolean => this.turn(clockwiseDirections)
 
   public report = (): Position => ({
     x: this.x,
     y: this.y,
     direction: this.direction
-  });
+  })
 
 }

@@ -4,21 +4,25 @@
     "tslint:latest"
   ],
   "rules": {
-    "no-implicit-dependencies": [
-      true,
-      "dev"
-    ],
     "indent": [
       true,
       "spaces",
       2
     ],
     "jsdoc-format": true,
+    "no-implicit-dependencies": [
+      true,
+      "dev"
+    ],
     "no-var-keyword": true,
     "quotemark": [
       true,
       "double",
       "avoid-escape"
+    ],
+    "semicolon": [
+      true,
+      "never"
     ]
   }
 }
