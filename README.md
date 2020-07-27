@@ -20,6 +20,11 @@ The focus is on:
 * A thin slice of working functionality delivered (CLI, file usage)
 * Good code quality, structure, readability and testing
 * Good UX (extra commands in the tool, readme, npm commands)
+* Extensibility ensured by sound structure (or otherwise provided already where it was a no-brainer, like the table size)
+
+Notes:
+
+* The implementation process was a mix of TDD / test-first and non-TDD approaches, as appropriate
 
 Due to timeboxing of the exercise, certain trade-offs were made of course, mostly around:
 
