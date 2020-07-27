@@ -23,6 +23,10 @@ export default class Command {
   public execute(command: string): void {
     const normalisedCommand = command.toUpperCase();
     switch (normalisedCommand) {
+      case "EXIT":
+        process.exit()
+      case "QUIT":
+        process.exit()
       case "HELP":
         this.log("Valid commands:\n  PLACE X,Y,F\n  MOVE:   move forward\n  LEFT:   turn left\n  RIGHT:  turn right\n  REPORT: print position\n  DEBUG:  turn debug on/off", true)
         break;
