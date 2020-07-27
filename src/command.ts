@@ -28,7 +28,15 @@ export default class Command {
       case "QUIT":
         process.exit()
       case "HELP":
-        this.log("Valid commands:\n  PLACE X,Y,F\n  MOVE:   move forward\n  LEFT:   turn left\n  RIGHT:  turn right\n  REPORT: print position\n  DEBUG:  turn debug on/off", true)
+        this.log("Valid commands:\n", true)
+        this.log("PLACE X,Y,F: place the robot", true)
+        this.log("MOVE:        move forward", true)
+        this.log("LEFT:        turn left", true)
+        this.log("RIGHT:       turn right", true)
+        this.log("REPORT:      print position", true)
+        this.log("DEBUG:       turn debug on/off", true)
+        this.log("HELP:        this help", true)
+        this.log("EXIT:        exit the app", true)
         break;
       case "DEBUG":
         this.debug = !this.debug;
