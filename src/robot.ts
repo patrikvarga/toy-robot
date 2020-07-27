@@ -1,7 +1,10 @@
 import Table, { Int, int } from "./table"
 
 export enum Direction {
-  NORTH, EAST, SOUTH, WEST
+  NORTH = "NORTH",
+  EAST = "EAST",
+  SOUTH = "SOUTH",
+  WEST = "WEST"
 }
 
 type Position = {
