@@ -1,5 +1,5 @@
-import Robot, { Direction } from "./robot";
-import Table from "./table";
+import Robot, { Direction } from "./robot"
+import Table from "./table"
 
 export default class Command {
 
@@ -21,7 +21,7 @@ export default class Command {
   private logFeedback = (feedback: boolean): void => this.log(feedback ? "DONE" : "IGNORED")
 
   public execute(command: string): void {
-    const normalisedCommand = command.toUpperCase();
+    const normalisedCommand = command.toUpperCase()
     switch (normalisedCommand) {
       case "EXIT":
         process.exit()
@@ -37,23 +37,23 @@ export default class Command {
         this.log("DEBUG:       turn debug on/off", true)
         this.log("HELP:        this help", true)
         this.log("EXIT:        exit the app", true)
-        break;
+        break
       case "DEBUG":
-        this.debug = !this.debug;
+        this.debug = !this.debug
         this.log("DEBUG is now " + (this.debug ? "ON" : "OFF"))
-        break;
+        break
       case "LEFT":
         this.logFeedback(this.robot.turnLeft())
-        break;
+        break
       case "RIGHT":
         this.logFeedback(this.robot.turnRight())
-        break;
+        break
       case "MOVE":
         this.logFeedback(this.robot.move(this.table))
-        break;
+        break
       case "REPORT":
         this.report()
-        break;
+        break
       default:
         if (normalisedCommand.startsWith("PLACE ")) {
           this.place(command.substring(6))
@@ -64,7 +64,7 @@ export default class Command {
   }
 
   private report = (): void => {
-    const position = this.robot.report();
+    const position = this.robot.report()
     const direction = position.direction === undefined ? undefined : Direction[position.direction]
     this.log(position.x + "," + position.y + "," + direction, true)
   }
