@@ -80,7 +80,7 @@ export default class Robot {
 
   private calculateNextPosition = (): Position => ({
     x: int(this.direction === Direction.EAST ? this.x + 1 : this.direction === Direction.WEST ? this.x - 1 : this.x),
-    y: int(this.direction === Direction.NORTH ? this.y + 1 : this.direction === Direction.SOUTH ? this.y - 1 : this.x),
+    y: int(this.direction === Direction.NORTH ? this.y + 1 : this.direction === Direction.SOUTH ? this.y - 1 : this.y),
     direction: this.direction
   })
 
