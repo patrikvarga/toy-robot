@@ -70,6 +70,8 @@ describe("robot", () => {
 
       expect(robot.turnLeft()).to.eq(true)
       expect(robot.direction).to.eq(Direction.WEST)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
 
     it("from EAST is now facing NORTH", () => {
@@ -77,6 +79,8 @@ describe("robot", () => {
 
       expect(robot.turnLeft()).to.eq(true)
       expect(robot.direction).to.eq(Direction.NORTH)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
 
     it("from SOUTH is facing EAST", () => {
@@ -84,6 +88,8 @@ describe("robot", () => {
 
       expect(robot.turnLeft()).to.eq(true)
       expect(robot.direction).to.eq(Direction.EAST)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
 
     it("from WEST is facing SOUTH", () => {
@@ -91,6 +97,8 @@ describe("robot", () => {
 
       expect(robot.turnLeft()).to.eq(true)
       expect(robot.direction).to.eq(Direction.SOUTH)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
   })
 
@@ -100,6 +108,8 @@ describe("robot", () => {
 
       expect(robot.turnRight()).to.eq(true)
       expect(robot.direction).to.eq(Direction.EAST)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
 
     it("from EAST is now facing SOUTH", () => {
@@ -107,6 +117,8 @@ describe("robot", () => {
 
       expect(robot.turnRight()).to.eq(true)
       expect(robot.direction).to.eq(Direction.SOUTH)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
 
     it("from SOUTH is facing WEST", () => {
@@ -114,6 +126,8 @@ describe("robot", () => {
 
       expect(robot.turnRight()).to.eq(true)
       expect(robot.direction).to.eq(Direction.WEST)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
 
     it("from WEST is facing NORTH", () => {
@@ -121,6 +135,8 @@ describe("robot", () => {
 
       expect(robot.turnRight()).to.eq(true)
       expect(robot.direction).to.eq(Direction.NORTH)
+      expect(robot.x).to.eq(666)
+      expect(robot.y).to.eq(999)
     })
   })
 
@@ -153,9 +169,11 @@ describe("robot", () => {
   describe("move", () => {
     it("NORTH succesfully", () => {
       robot.place(table, 4, 3, Direction.NORTH)
-      robot.move(table)
 
+      expect(robot.move(table)).to.eq(true)
+      expect(robot.x).to.eq(4)
       expect(robot.y).to.eq(4)
+      expect(robot.direction).to.eq(Direction.NORTH)
     })
 
     it("EAST succesfully", () => {
@@ -163,13 +181,17 @@ describe("robot", () => {
 
       expect(robot.move(table)).to.eq(true)
       expect(robot.x).to.eq(5)
+      expect(robot.y).to.eq(3)
+      expect(robot.direction).to.eq(Direction.EAST)
     })
 
     it("SOUTH succesfully", () => {
       robot.place(table, 4, 3, Direction.SOUTH)
 
       expect(robot.move(table)).to.eq(true)
+      expect(robot.x).to.eq(4)
       expect(robot.y).to.eq(2)
+      expect(robot.direction).to.eq(Direction.SOUTH)
     })
 
     it("WEST succesfully", () => {
@@ -177,6 +199,8 @@ describe("robot", () => {
 
       expect(robot.move(table)).to.eq(true)
       expect(robot.x).to.eq(3)
+      expect(robot.y).to.eq(3)
+      expect(robot.direction).to.eq(Direction.WEST)
     })
 
     it("is ignored before placement", () => {
